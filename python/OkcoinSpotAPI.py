@@ -33,6 +33,15 @@ class OKCoinSpot:
         if symbol:
             params = 'symbol=%(symbol)s' %{'symbol':symbol}
         return httpGet(self.__url,TRADES_RESOURCE,params)
+
+    #获取OKCOIN现货 kline 历史交易信息
+    def kline(self,symbol = 'ltc_cny',ok_type='5min'):
+        TRADES_RESOURCE = "/api/v1/kline.do"
+        params=''
+        #if symbol:
+        params = 'symbol=%s&type=%s' % (symbol,ok_type) 
+        return httpGet(self.__url,TRADES_RESOURCE,params)
+
     
     #获取用户现货账户信息
     def userinfo(self):
